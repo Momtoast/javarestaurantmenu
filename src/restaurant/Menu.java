@@ -39,9 +39,8 @@ public class Menu {
     public void addItem(MenuItem item) {
         menu.add(item);
     }
-    public void removeItem(ArrayList<MenuItem> menu, String name) {
-        int item = this.menu.indexOf(name);
-        this.menu.remove(item);
+    public void removeItem(ArrayList<MenuItem> menu, int index) {
+        menu.remove(index);
     }
 
     public void setLastUpdated(Date lastUpdated) {

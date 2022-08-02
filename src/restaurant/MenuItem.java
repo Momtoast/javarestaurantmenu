@@ -49,7 +49,7 @@ public class MenuItem {
     }
 
     public boolean isItemNew(Date lastUpdate) {
-        boolean test = dateAdded.after(lastUpdate);
+        boolean test = dateAdded.before(lastUpdate);
         if (test) {
             return true;
         } else {
