@@ -2,6 +2,7 @@ package restaurant;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.Objects;
 
 public class MenuItem {
     private String name;
@@ -15,7 +16,7 @@ public class MenuItem {
         this.price = price;
         this.description = description;
         this.category = category;
-        this.dateAdded = LocalDate.now();
+        this.dateAdded = new Date();
     }
 
     public void setName(String aName) {
@@ -45,5 +46,34 @@ public class MenuItem {
     }
     public Date getDateAdded() {
         return dateAdded;
+    }
+
+    public boolean isItemNew(Date lastUpdate) {
+        boolean test = dateAdded.after(lastUpdate);
+        if (test) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public String toString() {
+        return this.name + ": " +
+                this.description +
+                "\n" + this.price;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MenuItem menuItem = (MenuItem) o;
+        return getName().equals(menuItem.getName()) && getDescription().equals(menuItem.getDescription());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getDescription());
     }
 }

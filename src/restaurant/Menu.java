@@ -7,11 +7,11 @@ import java.util.Date;
 public class Menu {
     private Date currentDate;
     private Date lastUpdated;
-    private ArrayList<MenuItem> menu;
-    private ArrayList<MenuItem> newItems;
+    private ArrayList<MenuItem> menu = new ArrayList<>();
+    private ArrayList<MenuItem> newItems = new ArrayList<>();
 
-    public Menu(ArrayList<MenuItem> menu, lastUpdated) {
-        this.currentDate = LocalDate.now();
+    public Menu(Date lastUpdated) {
+        this.currentDate = new Date();
         this.lastUpdated = lastUpdated;
         this.menu = menu;
     }
@@ -36,15 +36,21 @@ public class Menu {
         return newItems;
     }
 
-    public ArrayList<MenuItem> createNewItems(ArrayList<MenuItem> menu) {
-        // here I will make a method that looks for new menu items and populates newItems, then prints it
+    public void addItem(MenuItem item) {
+        menu.add(item);
+    }
+    public void removeItem(ArrayList<MenuItem> menu, String name) {
+        int item = this.menu.indexOf(name);
+        this.menu.remove(item);
     }
 
-    public ArrayList<MenuItem> createMenu(ArrayList<MenuItem> menu) {
-        // here I will make a method that prints the whole menu by category
+    public void setLastUpdated(Date lastUpdated) {
+        this.lastUpdated = lastUpdated;
     }
 
-    public void setLastUpdated() {
-        //this should change lastUpdated to the current date, only to run after creating the menu
+    public void printMenu(ArrayList<MenuItem> menu) {
+        for (MenuItem item : menu) {
+            System.out.println(item);
+        }
     }
 }
